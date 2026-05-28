@@ -1,1 +1,1 @@
-# student_grade_analyzer
+A Python script that processes a list of students, calculates their stats, and prints a formatted report
