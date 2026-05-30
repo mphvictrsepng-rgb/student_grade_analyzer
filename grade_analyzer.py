@@ -26,10 +26,20 @@ for student in students:
         "status": status
     })
 
+total_score = sum(s["avg"] for s in results)
+total_students = len(results)
+class_average = total_score / total_students
+top_student = max(s["avg"] for s in results)        #here i'm extracting data from the results dictionary
+
+
 print('=============Student Report===============')         # I'm going to loop through the results to avoid printing a block of dictionries. this will make my report look clean and neat.
 print()                                                 # just to make some space between the report header print() output and the columns output
-print(f'{'Name':<10} | {'Average':<10} | {'Status':<10}')
+print(f'{"Name":<10} | {"Average(%)":<10} | {"Status":<10}')
 print('-' * 42)
 for student in results:
-    print(f'{student['name']:<10} | {student['avg']:<10.2f} | {student['status']:<10}')
+    print(f'{student["name"]:<10} | {student["avg"]:<10.2f} | {student["status"]:<10}')
+print()
+print(f'Final Class Average: {class_average:.2f}%')
+print()
+print(f'Top student is {student["name"]:<5} | {top_student:.2f}%')
 print('=' * 42)
