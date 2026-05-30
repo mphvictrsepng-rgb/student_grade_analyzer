@@ -5,25 +5,31 @@ students = [
     {"name": "Fatima", "marks": [65, 70, 68, 75]},
     {"name": "Kagiso", "marks": [40, 35, 50, 45]},
 ]
-"""TODO 1 - Write a function calculate_average(marks) that takes a list of marks and returns the average as a float"""
 
 def calculate_average(marks):
-    if not marks:                     #i did this just in case there are no marks for a student or an empty list
+    if not marks:                                     #i did this just in case there are no marks for a student or an empty list
         return 0.0
-    return sum(float(m) for m in marks) / len(marks)      #the float(m) for m (a generator expression) will turn string values into floats, e.g., for future work when i start working w/ CSV files
-print(calculate_average(students[0]["marks"]))
-print(calculate_average(students[1]["marks"]))
-
-"""Write a function get_status(average) that returns "PASS" if the average is 60 or above, otherwise "FAIL"."""
+    return sum(float(m) for m in marks) / len(marks)    #the float(m) for m (a generator expression) will turn string values into floats, e.g., for future work when i start working w/ CSV files
 
 def get_status(average):
-     return "PASS" if average >= 60 else "FAIL"
-student_avg_0 = calculate_average(students[0]["marks"])           # to make things easy for myself, i chose to name my variables here according to the location of the item on the list. 0 for Amara, 1 for Lerator and so forth
-student_status_0 = get_status(student_avg_0)
+    return "PASS" if average >= 60 else "FAIL"            
 
-student_avg_1 = calculate_average(students[1]["marks"])
-student_status_1 = get_status(student_avg_1)
+results = []                                     #this empty list will store all the results
 
+for student in students:
+    avg = calculate_average(student["marks"])
+    status = get_status(avg)
 
-print(f'Amara | Average: {student_avg_0} | Status: {student_status_0}')        # I need to figure aout hou to make the headings, e.g., all items under thir respective headings 
-print(f'Lerato | Average: {student_avg_1} | Status: {student_status_1}')
+    results.append({                             #i'm gonna add this to the empty list
+        "name":   student["name"],
+        "avg":    avg,
+        "status": status
+    })
+
+print('=============Student Report===============')         # I'm going to loop through the results to avoid printing a block of dictionries. this will make my report look clean and neat.
+print()                                                 # just to make some space between the report header print() output and the columns output
+print(f'{'Name':<10} | {'Average':<10} | {'Status':<10}')
+print('-' * 42)
+for student in results:
+    print(f'{student['name']:<10} | {student['avg']:<10.2f} | {student['status']:<10}')
+print('=' * 42)
