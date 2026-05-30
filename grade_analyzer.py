@@ -29,7 +29,7 @@ for student in students:
 total_score = sum(s["avg"] for s in results)
 total_students = len(results)
 class_average = total_score / total_students
-top_student = max(s["avg"] for s in results)        #here i'm extracting data from the results dictionary
+top_student = max(results, key=lambda s: s["avg"])        #here i'm extracting data from the results dictionary
 
 
 print('=============Student Report===============')         # I'm going to loop through the results to avoid printing a block of dictionries. this will make my report look clean and neat.
@@ -41,5 +41,5 @@ for student in results:
 print()
 print(f'Final Class Average: {class_average:.2f}%')
 print()
-print(f'Top student is {student["name"]:<5} | {top_student:.2f}%')
+print(f'Top student is {top_student["name"]:<8} | {top_student["avg"]:.2f}%')
 print('=' * 42)
