@@ -33,5 +33,5 @@ with open("students_clean.csv", "w", newline="") as file:
     writer.writeheader()
     writer.writerows(cleaned)
 
-print("Done! students_clean.csv has been created.")
+print('Students_clean.csv has been created.')
 print(cleaned)
